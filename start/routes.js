@@ -16,6 +16,13 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.get("/", () => {
+  return { greeting: "Welcome to the Adonis API tutorial" };
+});
+
+//User routes
+Route.group(() => {
+  Route.post("create", "UserController.create");
+
+  Route.route("get", "UserController.fetch", ["GET", "POST"]);
+}).prefix("user");
